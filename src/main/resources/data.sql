@@ -1,0 +1,3 @@
+INSERT INTO ALUNO(NAME, ACTIVE, PERIOD) VALUES ('Julia', true, 'Tarde');
+INSERT INTO ALUNO(NAME, ACTIVE, PERIOD) VALUES ('Rafael', false, 'Noite');
+INSERT INTO ALUNO(NAME, ACTIVE, PERIOD) VALUES ('Angelo', true, 'Manhã');
