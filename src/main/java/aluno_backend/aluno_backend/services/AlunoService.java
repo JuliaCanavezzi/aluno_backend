@@ -38,4 +38,12 @@ public class AlunoService {
             throw new EntityNotFoundException("Aluno não cadastrado");
         }
     }
+
+    public void update(int id, Aluno aluno){
+        Aluno aux = repository.getReferenceById(id);
+        aux.setName(aluno.getName());
+        aux.setPeriod(aluno.getPeriod());
+        aux.setActive(aluno.getActive());
+        repository.save(aluno);
+    }
 }
