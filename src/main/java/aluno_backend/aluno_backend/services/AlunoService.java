@@ -25,4 +25,10 @@ public class AlunoService {
             () -> new EntityNotFoundException("Aluno não cadastrado")
         );
     }
+
+    public Aluno save(Aluno aluno){
+        return repository.save(aluno);
+    }
+
+    
 }
