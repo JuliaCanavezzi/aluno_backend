@@ -6,6 +6,7 @@ import aluno_backend.aluno_backend.services.AlunoService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,5 +33,10 @@ public class AlunoController {
         @PostMapping("students")
         public Aluno save (@RequestBody Aluno aluno){
             return service.save(aluno);
+        }
+
+        @DeleteMapping("students/{id}")
+        public void deleteById(@PathVariable int id){
+            service.deleteByid(id);
         }
 }

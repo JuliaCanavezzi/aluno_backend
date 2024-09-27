@@ -30,5 +30,12 @@ public class AlunoService {
         return repository.save(aluno);
     }
 
-    
+    public void deleteByid(int id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        }
+        else{
+            throw new EntityNotFoundException("Aluno não cadastrado");
+        }
+    }
 }
