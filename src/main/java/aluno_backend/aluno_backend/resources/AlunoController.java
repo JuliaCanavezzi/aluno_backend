@@ -7,6 +7,7 @@ import aluno_backend.aluno_backend.services.AlunoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController // anotação do spring framework dizendo que essa classe através dessa anotação atende chamadas http
@@ -19,5 +20,10 @@ public class AlunoController {
         @GetMapping("students")
         public List<Aluno> getAlunos(){
             return service.getAlunos(); //chama o serviço, devolve os alunos
+        }
+
+        @GetMapping("students/{id}")
+        public Aluno getAlunoById(@PathVariable int id){
+            return service.getAlunoById(id); //chama o serviço, devolve os alunos
         }
 }

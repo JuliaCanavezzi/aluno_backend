@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import aluno_backend.aluno_backend.entities.Aluno;
 import aluno_backend.aluno_backend.repositories.AlunoRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -17,5 +18,11 @@ public class AlunoService {
     public List<Aluno> getAlunos(){
         return repository.findAll();
         
+    }
+
+    public Aluno getAlunoById(int id ){
+        return repository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("Aluno não cadastrado")
+        );
     }
 }
