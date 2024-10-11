@@ -49,13 +49,15 @@ public class AlunoController {
         }
 
         @DeleteMapping("students/{id}")
-        public void deleteById(@PathVariable int id){
+        public ResponseEntity<Void> deleteById(@PathVariable int id){
             service.deleteByid(id);
+           return ResponseEntity.noContent().build();
         }
 
         @PutMapping("students/{id}")
-        public void update(@PathVariable int id, 
+        public ResponseEntity<Void> update(@PathVariable int id, 
                            @RequestBody Aluno aluno){
             service.update(id, aluno);
+            return ResponseEntity.ok().build();
         }  
 }
