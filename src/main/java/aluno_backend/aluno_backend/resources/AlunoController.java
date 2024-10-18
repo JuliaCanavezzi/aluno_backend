@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import aluno_backend.aluno_backend.dtos.AlunoRequest;
+import aluno_backend.aluno_backend.dtos.AlunoResponse;
 import aluno_backend.aluno_backend.entities.Aluno;
 import aluno_backend.aluno_backend.services.AlunoService;
 
