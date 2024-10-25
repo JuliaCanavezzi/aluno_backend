@@ -6,6 +6,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import aluno_backend.aluno_backend.dtos.AlunoRequest;
 import aluno_backend.aluno_backend.dtos.AlunoResponse;
 import aluno_backend.aluno_backend.services.AlunoService;
+import jakarta.validation.Valid;
 
 import java.net.URI;
 import java.util.List;
@@ -37,7 +38,7 @@ public class AlunoController {
         }
 
         @PostMapping("students")
-        public ResponseEntity <AlunoResponse> save(@RequestBody AlunoRequest aluno){
+        public ResponseEntity <AlunoResponse> save(@Valid @RequestBody AlunoRequest aluno){
             AlunoResponse novoAluno = service.save(aluno);
 
             URI location = ServletUriComponentsBuilder
