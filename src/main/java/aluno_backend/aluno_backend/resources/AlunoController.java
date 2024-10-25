@@ -5,7 +5,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import aluno_backend.aluno_backend.dtos.AlunoRequest;
 import aluno_backend.aluno_backend.dtos.AlunoResponse;
-import aluno_backend.aluno_backend.entities.Aluno;
 import aluno_backend.aluno_backend.services.AlunoService;
 
 import java.net.URI;
@@ -28,23 +27,23 @@ public class AlunoController {
 
         
         @GetMapping("students")
-        public ResponseEntity <List<Aluno>> getAlunos(){
+        public ResponseEntity <List<AlunoResponse>> getAlunos(){
             return ResponseEntity.ok(service.getAlunos()); //chama o serviço, devolve os alunos
         }
 
         @GetMapping("students/{id}")
-        public ResponseEntity <Aluno> getAlunoById(@PathVariable int id){
+        public ResponseEntity <AlunoResponse> getAlunoById(@PathVariable int id){
             return ResponseEntity.ok(service.getAlunoById(id)); 
         }
 
         @PostMapping("students")
-        public ResponseEntity <Aluno> save (@RequestBody AlunoRequest aluno){
-            Aluno novoAluno = service.save(aluno);
+        public ResponseEntity <AlunoResponse> save(@RequestBody AlunoRequest aluno){
+            AlunoResponse novoAluno = service.save(aluno);
 
             URI location = ServletUriComponentsBuilder
                             .fromCurrentRequest()
                             .path("/{id}")
-                            .buildAndExpand(novoAluno.getId())
+                            .buildAndExpand(novoAluno.id())
                             .toUri();
 
             return ResponseEntity.created(location).body(novoAluno);

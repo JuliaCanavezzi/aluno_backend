@@ -6,5 +6,4 @@ public record AlunoResponse(
     Boolean active,
     String period
 ) {
-    
 }

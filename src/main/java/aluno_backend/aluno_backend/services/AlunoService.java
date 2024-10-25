@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aluno_backend.aluno_backend.dtos.AlunoRequest;
+import aluno_backend.aluno_backend.dtos.AlunoResponse;
 import aluno_backend.aluno_backend.entities.Aluno;
 import aluno_backend.aluno_backend.mappers.AlunoMapper;
 import aluno_backend.aluno_backend.repositories.AlunoRepository;
@@ -17,19 +18,25 @@ public class AlunoService {
     @Autowired // sping cria e injeta AlunoRepository dentro do Controller
     private AlunoRepository repository;
     
-    public List<Aluno> getAlunos(){
-        return repository.findAll();
+    public List<AlunoResponse> getAlunos(){
+        return repository.findAll()
+                        .stream()
+                        .map( aluno -> AlunoMapper.toDto(aluno))
+                        .toList();
+                        
         
     }
 
-    public Aluno getAlunoById(int id ){
-        return repository.findById(id).orElseThrow(
+    public AlunoResponse getAlunoById(int id ){
+        Aluno aluno = repository.findById(id).orElseThrow(
             () -> new EntityNotFoundException("Aluno não cadastrado")
         );
+           return AlunoMapper.toDto(aluno); 
     }
 
-    public Aluno save(AlunoRequest dtoRequestAluno){
-        return repository.save(AlunoMapper.toEntity(dtoRequestAluno));
+    public AlunoResponse save(AlunoRequest dtoRequestAluno){
+        Aluno aluno = repository.save(AlunoMapper.toEntity(dtoRequestAluno));
+        return AlunoMapper.toDto(aluno);
     }
 
     public void deleteByid(int id){
